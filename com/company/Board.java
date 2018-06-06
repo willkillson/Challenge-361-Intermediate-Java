@@ -86,17 +86,17 @@ public class Board {
         Position posToReturn = current;
 
         while(adjustment.xpos!=0){
-            current.xpos--;
-            if(current.xpos<0){
-                current.xpos = 5;
+            posToReturn.xpos--;
+            if(posToReturn.xpos<0){
+                posToReturn.xpos = 5;
             }
 
             adjustment.xpos--;
         }
         while(adjustment.ypos!=0){
-            current.ypos--;
-            if(current.ypos<0){
-                current.ypos = 5;
+            posToReturn.ypos--;
+            if(posToReturn.ypos<0){
+                posToReturn.ypos = 5;
             }
             adjustment.ypos--;
         }
@@ -106,6 +106,16 @@ public class Board {
 
     public Position findPosByChar(Character chartofind){
         Position pos = new Position(0,0);
+
+        for(int i = 0;i<6;i++){
+            for(int j = 0;j<6;j++){
+                if(tiles[i][j].character==chartofind){
+                    pos.xpos = j;
+                    pos.ypos = i;
+                    return pos;
+                }
+            }
+        }
 
         return pos;
     }

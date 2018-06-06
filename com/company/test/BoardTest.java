@@ -116,18 +116,36 @@ public class BoardTest {
         Position pos3 = new Position(5,5);
 
 
-        assertEquals(pos1, board.findPosByChar('t'));
-        assertEquals(pos2, board.findPosByChar('#'));
-        assertEquals(pos3, board.findPosByChar('b'));
+        assertEquals(pos1.xpos, board.findPosByChar('t').xpos);
+        assertEquals(pos1.ypos, board.findPosByChar('t').ypos);
+
+        assertEquals(pos2.xpos, board.findPosByChar('#').xpos);
+        assertEquals(pos2.ypos, board.findPosByChar('#').ypos);
+
+        assertEquals(pos3.xpos, board.findPosByChar('b').xpos);
+        assertEquals(pos3.ypos, board.findPosByChar('b').ypos);
     }
 
     @Test
     public void TestEncryptMovPosByPos(){
-        assertTrue(false);
+        //might be broken
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        Position current = board.findPosByChar('t');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        char result = board.findCharByPos(board.encryptMovPosbyPos(current,adjust));
+        assertEquals('r',result);
     }
     @Test
     public void TestDecrpytMovPosByPos(){
-        assertTrue(false);
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        Position current = board.findPosByChar('t');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        char result = board.findCharByPos(board.decrpytMovPosbyPos(current,adjust));
+        assertEquals('a',result);
     }
     @Test
     public void TestFindCharacterByPosition(){
@@ -160,6 +178,19 @@ public class BoardTest {
     public void TestEncryptMessage(){
         Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "aaaaaaaaaaaaaaaaaaaa");
         assertEquals("tk5j23tq94_gw9c#lhzs",board.encryptMessage());
+    }
+
+    @Test
+    public void TestEncryptOneLetter(){
+        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
+
+        Position current = board.findPosByChar('x');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        Position pos1 = board.encryptMovPosbyPos(current,adjust);
+        board.findCharByPos(pos1);
+        assertEquals('a',  board.findCharByPos(pos1));
+
     }
 
 
