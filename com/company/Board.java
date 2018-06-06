@@ -26,6 +26,7 @@ public class Board {
             }
         }
 
+        this.tiles[0][0].isMarked=true;
 
     }
 
@@ -44,7 +45,7 @@ public class Board {
         return message;
     }
 
-    public void ShiftRowRight(int rowIndex){
+    public void shiftRowRight(int rowIndex){
         Tile temp = tiles[rowIndex][5];
         for(int i = 5;i>0;i--){
              tiles[rowIndex][i] = tiles[rowIndex][i-1];
@@ -52,13 +53,27 @@ public class Board {
         tiles[rowIndex][0] = temp;
 
     }
-    public void ShiftColumnDown(int columnIndex){
+    public void shiftColumnDown(int columnIndex){
         Tile temp = tiles[5][columnIndex];
 
         for(int i = 5;i>0;i--){
             tiles[i][columnIndex] = tiles[i-1][columnIndex];
         }
         tiles[0][columnIndex] = temp;
+    }
+
+    public void updateMarkerPos(){
+        Position posToReturn = new Position(0,0);
+
+        for(int i =0;i<6;i++){
+            for(int j = 0;j< 6;j++){
+                if(tiles[i][j].isMarked==true){
+                    markerPos.xpos = j;
+                    markerPos.ypos = i;
+                }
+            }
+        }
+
     }
 
     public Position encryptMovPosbyPos(Position current, Position adjustment){

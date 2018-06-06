@@ -48,8 +48,24 @@ public class BoardTest {
     public void TestBoardDefaultMarkerPos(){
         Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
 
+        assertEquals(true,board.tiles[0][0].isMarked);
         assertEquals(0,board.markerPos.xpos);
         assertEquals(0,board.markerPos.ypos);
+
+    }
+
+    @Test
+    public void TestBoardMarkerPosMovement(){
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        board.shiftRowRight(0);
+        board.shiftColumnDown(1);
+
+        board.updateMarkerPos();
+
+        assertEquals(true,board.tiles[1][1].isMarked);
+        assertEquals(1,board.markerPos.xpos);
+        assertEquals(1,board.markerPos.ypos);
 
     }
 
@@ -57,9 +73,9 @@ public class BoardTest {
     public void TestShiftRowRight(){
         Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
 
-        board.ShiftRowRight(0);
-        board.ShiftRowRight(3);
-        board.ShiftRowRight(5);
+        board.shiftRowRight(0);
+        board.shiftRowRight(3);
+        board.shiftRowRight(5);
 
         String testStringOne = "";
         String testStringTwo = "";
@@ -83,9 +99,9 @@ public class BoardTest {
     public void TestShiftColumnDown(){
         Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
 
-        board.ShiftColumnDown(0);
-        board.ShiftColumnDown(3);
-        board.ShiftColumnDown(5);
+        board.shiftColumnDown(0);
+        board.shiftColumnDown(3);
+        board.shiftColumnDown(5);
 
         String testStringOne = "";
         String testStringTwo = "";
@@ -127,27 +143,6 @@ public class BoardTest {
     }
 
     @Test
-    public void TestEncryptMovPosByPos(){
-        //might be broken
-        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
-
-        Position current = board.findPosByChar('x');
-        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
-
-        char result = board.findCharByPos(board.encryptMovPosbyPos(current,adjust));
-        assertEquals('a',result);
-    }
-    @Test
-    public void TestDecrpytMovPosByPos(){
-        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
-
-        Position current = board.findPosByChar('t');
-        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
-
-        char result = board.findCharByPos(board.decrpytMovPosbyPos(current,adjust));
-        assertEquals('a',result);
-    }
-    @Test
     public void TestFindCharacterByPosition(){
         Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
 
@@ -164,7 +159,64 @@ public class BoardTest {
     }
 
     @Test
+    public void TestEncryptOneLetter(){
+        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
+
+        Position current = board.findPosByChar('x');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        Position pos1 = board.encryptMovPosbyPos(current,adjust);
+        board.findCharByPos(pos1);
+        assertEquals('a',  board.findCharByPos(pos1));
+
+    }
+
+    @Test
+    public void TestEncryptMovPosByPos(){
+        //might be broken
+        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
+
+        Position current = board.findPosByChar('x');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        char result = board.findCharByPos(board.encryptMovPosbyPos(current,adjust));
+        assertEquals('a',result);
+    }
+
+    @Test
+    public void TestDecrpytMovPosByPos(){
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        Position current = board.findPosByChar('t');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        char result = board.findCharByPos(board.decrpytMovPosbyPos(current,adjust));
+        assertEquals('a',result);
+    }
+
+    @Test
+    public void TestFindMarker(){
+
+    }
+
+    @Test
     public void TestUpdateMarkerPosition(){
+
+        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
+
+        Position current = board.findPosByChar('x');
+        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
+
+        board.targetCharacter = board.findCharByPos(board.encryptMovPosbyPos(current,adjust));
+        int rowIndex = current.ypos;
+        int columnIndex = board.findPosByChar(board.targetCharacter).xpos;
+
+        board.shiftRowRight(rowIndex);
+        board.shiftColumnDown(columnIndex);
+
+        //assertEquals('a',result);
+
+
         assertTrue(false);
     }
 
@@ -180,18 +232,6 @@ public class BoardTest {
         assertEquals("tk5j23tq94_gw9c#lhzs",board.encryptMessage());
     }
 
-    @Test
-    public void TestEncryptOneLetter(){
-        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
-
-        Position current = board.findPosByChar('x');
-        Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
-
-        Position pos1 = board.encryptMovPosbyPos(current,adjust);
-        board.findCharByPos(pos1);
-        assertEquals('a',  board.findCharByPos(pos1));
-
-    }
 
 
 }
