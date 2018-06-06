@@ -30,6 +30,15 @@ public class Board {
 
     }
 
+    public void printBoard(){
+        for(int i = 0;i< 6;i++){
+            for(int j = 0;j< 6;j++){
+                System.out.print(tiles[i][j].character);
+            }
+            System.out.print('\n');
+        }
+    }
+
     public String encryptMessage(){
         String message = "";
 
@@ -82,48 +91,49 @@ public class Board {
 
     public Position encryptMovPosbyPos(Position current, Position adjustment){
         Position posToReturn = new Position(current.ypos,current.xpos);
+        Position adjust = new Position (adjustment.ypos,adjustment.xpos);
 
-        while(adjustment.xpos!=0){
+        while(adjust.xpos!=0){
             posToReturn.xpos++;
             if(posToReturn.xpos>5){
                 posToReturn.xpos = 0;
             }
 
-            adjustment.xpos--;
+            adjust.xpos--;
         }
-        while(adjustment.ypos!=0){
+        while(adjust.ypos!=0){
             posToReturn.ypos++;
             if(posToReturn.ypos>5){
                 posToReturn.ypos = 0;
             }
-            adjustment.ypos--;
+            adjust.ypos--;
         }
         return posToReturn;
 
     }
     public Position decrpytMovPosbyPos(Position current, Position adjustment){
         Position posToReturn = new Position(current.ypos, current.xpos);
+        Position adjust = new Position (adjustment.ypos,adjustment.xpos);
 
-        while(adjustment.xpos!=0){
+        while(adjust.xpos!=0){
             posToReturn.xpos--;
             if(posToReturn.xpos<0){
                 posToReturn.xpos = 5;
             }
-            adjustment.xpos--;
+            adjust.xpos--;
         }
-        while(adjustment.ypos!=0){
+        while(adjust.ypos!=0){
             posToReturn.ypos--;
             if(posToReturn.ypos<0){
                 posToReturn.ypos = 5;
             }
-            adjustment.ypos--;
+            adjust.ypos--;
         }
         return posToReturn;
     }
 
     public Position findPosByChar(Character chartofind){
         Position pos = new Position(0,0);
-
         for(int i = 0;i<6;i++){
             for(int j = 0;j<6;j++){
                 if(tiles[i][j].character==chartofind){

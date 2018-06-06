@@ -216,7 +216,6 @@ public class BoardTest {
 
     }
 
-
     @Test
     public void TestUpdateMarkerPosition(){
 
@@ -248,9 +247,50 @@ public class BoardTest {
     @Test
     public void TestEncryptMessage(){
         Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "aaaaaaaaaaaaaaaaaaaa");
-        assertEquals("tk5j23tq94_gw9c#lhzs",board.encryptMessage());
+
+        char chartemp;
+
+        String answer = "tk5j23tq94_gw9c#lhzs";
+
+        String message = "";
+
+        int textIndex = 0;
+        while(textIndex<board.text.length()){
+
+            System.out.println("\nIndex : " +textIndex);
+            board.printBoard();
+            if(textIndex==4){
+
+                System.out.print("picking u instead of 2");
+            }
+
+            chartemp = board.text.charAt(textIndex);
+            Position current = board.findPosByChar(chartemp);
+
+            chartemp = board.findCharByPos(board.markerPos);
+            Position adjust = board.dictionary.get(chartemp);
+
+            board.targetCharacter = board.findCharByPos(board.encryptMovPosbyPos(current,adjust));
+
+            message += board.targetCharacter;
+
+            int rowIndex = current.ypos;
+            int columnIndex = board.findPosByChar(board.targetCharacter).xpos;
+
+            board.shiftRowRight(rowIndex);
+            board.shiftColumnDown(columnIndex);
+
+            board.updateMarkerPos();
+            board.moveMarkerByPos(board.dictionary.get(board.targetCharacter));
+
+            assertEquals(answer.charAt(textIndex),message.charAt(textIndex));
+
+            textIndex++;
+
+
+        }
+
+
     }
-
-
 
 }
