@@ -63,34 +63,38 @@ public class Board {
     }
 
     public void updateMarkerPos(){
-        Position posToReturn = new Position(0,0);
-
         for(int i =0;i<6;i++){
             for(int j = 0;j< 6;j++){
                 if(tiles[i][j].isMarked==true){
                     markerPos.xpos = j;
                     markerPos.ypos = i;
+                    return;
                 }
             }
         }
 
     }
+    public void moveMarkerByPos(Position pos){
+        tiles[markerPos.ypos][markerPos.xpos].isMarked=false;
+        markerPos = encryptMovPosbyPos(markerPos,pos);
+        tiles[markerPos.ypos][markerPos.xpos].isMarked=true;
+    }
 
     public Position encryptMovPosbyPos(Position current, Position adjustment){
-        Position posToReturn = current;
+        Position posToReturn = new Position(current.ypos,current.xpos);
 
         while(adjustment.xpos!=0){
-            current.xpos++;
-            if(current.xpos>5){
-                current.xpos = 0;
+            posToReturn.xpos++;
+            if(posToReturn.xpos>5){
+                posToReturn.xpos = 0;
             }
 
             adjustment.xpos--;
         }
         while(adjustment.ypos!=0){
-            current.ypos++;
-            if(current.ypos>5){
-                current.ypos = 0;
+            posToReturn.ypos++;
+            if(posToReturn.ypos>5){
+                posToReturn.ypos = 0;
             }
             adjustment.ypos--;
         }
@@ -98,14 +102,13 @@ public class Board {
 
     }
     public Position decrpytMovPosbyPos(Position current, Position adjustment){
-        Position posToReturn = current;
+        Position posToReturn = new Position(current.ypos, current.xpos);
 
         while(adjustment.xpos!=0){
             posToReturn.xpos--;
             if(posToReturn.xpos<0){
                 posToReturn.xpos = 5;
             }
-
             adjustment.xpos--;
         }
         while(adjustment.ypos!=0){
@@ -116,7 +119,6 @@ public class Board {
             adjustment.ypos--;
         }
         return posToReturn;
-
     }
 
     public Position findPosByChar(Character chartofind){

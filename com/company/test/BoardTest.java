@@ -194,10 +194,28 @@ public class BoardTest {
         assertEquals('a',result);
     }
 
-    @Test
-    public void TestFindMarker(){
+    @Test void TestMoveMarkerByPos(){
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        Position pos1 = new Position(0,5);
+        board.moveMarkerByPos(pos1);
+        assertEquals(5,board.markerPos.xpos);
+        assertEquals(0,board.markerPos.ypos);
+
+        pos1.ypos = 5;
+        pos1.xpos = 1;
+        board.moveMarkerByPos(pos1);
+        assertEquals(0,board.markerPos.xpos);
+        assertEquals(5,board.markerPos.ypos);
+
+        pos1.ypos = 1;
+        pos1.xpos = 0;
+        board.moveMarkerByPos(pos1);
+        assertEquals(0,board.markerPos.xpos);
+        assertEquals(0,board.markerPos.ypos);
 
     }
+
 
     @Test
     public void TestUpdateMarkerPosition(){
@@ -214,10 +232,11 @@ public class BoardTest {
         board.shiftRowRight(rowIndex);
         board.shiftColumnDown(columnIndex);
 
-        //assertEquals('a',result);
+        board.updateMarkerPos();
+        board.moveMarkerByPos(board.dictionary.get(board.targetCharacter));
 
 
-        assertTrue(false);
+        assertEquals('9',board.findCharByPos(board.markerPos));
     }
 
     @Test
