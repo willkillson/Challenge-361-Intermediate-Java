@@ -129,13 +129,13 @@ public class BoardTest {
     @Test
     public void TestEncryptMovPosByPos(){
         //might be broken
-        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+        Board board = new Board("gp3lehwzf9jx5yo6r#nd8auks4qtv72cmib_", "x");
 
-        Position current = board.findPosByChar('t');
+        Position current = board.findPosByChar('x');
         Position adjust = board.dictionary.get(board.findCharByPos(board.markerPos));
 
         char result = board.findCharByPos(board.encryptMovPosbyPos(current,adjust));
-        assertEquals('r',result);
+        assertEquals('a',result);
     }
     @Test
     public void TestDecrpytMovPosByPos(){
