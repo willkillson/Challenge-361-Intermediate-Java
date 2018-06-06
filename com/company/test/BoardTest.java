@@ -134,12 +134,14 @@ public class BoardTest {
 
     @Test
     public void TestDecryptMessage(){
-        assertTrue(false);
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+        assertEquals("aaaaaaaaaaaaaaaaaaaa",board.decryptMessage());
     }
 
     @Test
     public void TestEncryptMessage(){
-        assertTrue(false);
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "aaaaaaaaaaaaaaaaaaaa");
+        assertEquals("tk5j23tq94_gw9c#lhzs",board.encryptMessage());
     }
 
 

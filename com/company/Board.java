@@ -10,12 +10,13 @@ public class Board {
     public Position textPos = new Position(0,0);
     public Position targetPos = new Position(0,0);
 
+    public String text;
+
     public Character targetCharacter;
-
-
 
     public Board(String alphabet, String text){
         dictionary = CreateDictionary("#_23456789abcdefghijklmnopqrstuvwxyz");
+        this.text = text;
 
         int alphabetKey = 0;
         for(int i = 0;i< 6;i++){
@@ -26,6 +27,17 @@ public class Board {
         }
 
 
+    }
+
+    public String encryptMessage(){
+        String message = "";
+
+        return message;
+    }
+    public String decryptMessage(){
+        String message = "";
+
+        return message;
     }
 
     public void ShiftRowRight(int rowIndex){
@@ -44,14 +56,11 @@ public class Board {
         }
         tiles[0][columnIndex] = temp;
     }
-
     public Position FindTilePosition(Character chartofind){
         Position pos = new Position(0,0);
 
         return pos;
     }
-
-
     public Character FindTargetCharacter(){
         Character tar = ' ';
 
