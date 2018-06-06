@@ -40,6 +40,7 @@ public class Board {
 
         textPos = findPosByChar(text.charAt(textIndex));
 
+
         return message;
     }
 
@@ -58,6 +59,49 @@ public class Board {
             tiles[i][columnIndex] = tiles[i-1][columnIndex];
         }
         tiles[0][columnIndex] = temp;
+    }
+
+    public Position encryptMovPosbyPos(Position current, Position adjustment){
+        Position posToReturn = current;
+
+        while(adjustment.xpos!=0){
+            current.xpos++;
+            if(current.xpos>5){
+                current.xpos = 0;
+            }
+
+            adjustment.xpos--;
+        }
+        while(adjustment.ypos!=0){
+            current.ypos++;
+            if(current.ypos>5){
+                current.ypos = 0;
+            }
+            adjustment.ypos--;
+        }
+        return posToReturn;
+
+    }
+    public Position decrpytMovPosbyPos(Position current, Position adjustment){
+        Position posToReturn = current;
+
+        while(adjustment.xpos!=0){
+            current.xpos--;
+            if(current.xpos<0){
+                current.xpos = 5;
+            }
+
+            adjustment.xpos--;
+        }
+        while(adjustment.ypos!=0){
+            current.ypos--;
+            if(current.ypos<0){
+                current.ypos = 5;
+            }
+            adjustment.ypos--;
+        }
+        return posToReturn;
+
     }
 
     public Position findPosByChar(Character chartofind){

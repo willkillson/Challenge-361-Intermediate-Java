@@ -107,7 +107,7 @@ public class BoardTest {
     }
 
     @Test
-    public void TestFindTilePositionWithCharacter(){
+    public void TestFindPosByChar(){
 
         Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
 
@@ -121,6 +121,14 @@ public class BoardTest {
         assertEquals(pos3, board.findPosByChar('b'));
     }
 
+    @Test
+    public void TestEncryptMovPosByPos(){
+        assertTrue(false);
+    }
+    @Test
+    public void TestDecrpytMovPosByPos(){
+        assertTrue(false);
+    }
     @Test
     public void TestFindCharacterByPosition(){
         Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
