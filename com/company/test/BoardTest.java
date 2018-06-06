@@ -82,8 +82,28 @@ public class BoardTest {
     @Test
     public void TestShiftColumnDown(){
         Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
-        
-        assertTrue(false);
+
+        board.ShiftColumnDown(0);
+        board.ShiftColumnDown(3);
+        board.ShiftColumnDown(5);
+
+        String testStringOne = "";
+        String testStringTwo = "";
+        String testStringThree = "";
+
+
+        for(int i = 0;i<6;i++){
+            testStringOne += board.tiles[i][0].character;
+            testStringTwo += board.tiles[i][3].character;
+            testStringThree += board.tiles[i][5].character;
+
+        }
+
+
+        assertEquals("cs_tuz", testStringOne);
+        assertEquals("7e3o#j", testStringTwo);
+        assertEquals("bw6img", testStringThree);
+
     }
 
     @Test
