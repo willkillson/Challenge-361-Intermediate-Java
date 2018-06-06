@@ -29,10 +29,20 @@ public class Board {
     }
 
     public void ShiftRowRight(int rowIndex){
+        Tile temp = tiles[rowIndex][5];
+        for(int i = 5;i>0;i--){
+             tiles[rowIndex][i] = tiles[rowIndex][i-1];
+        }
+        tiles[rowIndex][0] = temp;
 
     }
     public void ShiftColumnDown(int columnIndex){
+        Tile temp = tiles[5][columnIndex];
 
+        for(int i = 5;i>0;i--){
+            tiles[i][columnIndex] = tiles[i-1][columnIndex];
+        }
+        tiles[0][columnIndex] = temp;
     }
 
     public Position FindTilePosition(Character chartofind){
@@ -40,6 +50,8 @@ public class Board {
 
         return pos;
     }
+
+
     public Character FindTargetCharacter(){
         Character tar = ' ';
 

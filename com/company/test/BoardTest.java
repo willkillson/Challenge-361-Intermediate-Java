@@ -107,7 +107,7 @@ public class BoardTest {
     }
 
     @Test
-    public void TestFindTilePosition(){
+    public void TestFindTilePositionWithCharacter(){
 
         Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
 
@@ -124,16 +124,13 @@ public class BoardTest {
     @Test
     public void TestFindTargetCharacter(){
         assertTrue(false);
+
     }
 
     @Test
     public void TestUpdateMarkerPosition(){
-        Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
-
-
         assertTrue(false);
     }
-
 
     @Test
     public void TestDecryptMessage(){
