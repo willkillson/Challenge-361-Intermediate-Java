@@ -26,6 +26,13 @@ public class Board {
 
     }
 
+    public void ShiftRowRight(int rowIndex){
+
+    }
+    public void ShiftColumnDown(int columnIndex){
+
+    }
+
 
     public HashMap<Character, Position> CreateDictionary(String letters){
         HashMap<Character, Position> dic = new HashMap<>();

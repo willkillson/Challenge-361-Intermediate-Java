@@ -53,5 +53,51 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void TestShiftRowRight(){
+        Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        board.ShiftRowRight(0);
+        board.ShiftRowRight(3);
+        board.ShiftRowRight(5);
+
+        String testStringOne = "";
+        String testStringTwo = "";
+        String testStringThree = "";
+
+
+        for(int i = 0;i<6;i++){
+            testStringOne += board.tiles[0][i].character;
+            testStringTwo += board.tiles[3][i].character;
+            testStringThree += board.tiles[5][i].character;
+
+        }
+
+
+        assertEquals("ws2fer", testStringOne);
+        assertEquals("mupq#l", testStringTwo);
+        assertEquals("bcvk79", testStringThree);
+    }
+
+    @Test
+    public void TestShiftColumnDown(){
+        Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
+        
+        assertTrue(false);
+    }
+
+    @Test
+    public void TestUpdateMarkerPosition(){
+        assertTrue(false);
+    }
+    @Test
+    public void TestDecryptMessage(){
+        assertTrue(false);
+    }
+
+    @Test
+    public void TestEncryptMessage(){
+        assertTrue(false);
+    }
 
 }
