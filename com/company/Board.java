@@ -4,16 +4,22 @@ import java.util.HashMap;
 
 public class Board {
     public HashMap<Character, Position> dictionary;
-    public Tile [][]tiles;
+    public Tile[][] tiles = new Tile[6][6];
+
+    public Position markerPos = new Position(0,0);
+    public Position textPos = new Position(0,0);
+    public Position targetPos = new Position(0,0);
+
+
 
     public Board(String alphabet, String text){
         dictionary = CreateDictionary("#_23456789abcdefghijklmnopqrstuvwxyz");
 
-
-
+        int alphabetKey = 0;
         for(int i = 0;i< 6;i++){
-            for(int j = 0;j< 6;j++){
-                Tile newTile = new Tile()
+            for(int j = 0;j< 6;j++, alphabetKey++){
+                Tile newTile = new Tile( alphabet.charAt(alphabetKey),false);
+                tiles[i][j] = newTile;
             }
         }
 
@@ -34,4 +40,5 @@ public class Board {
 
         return dic;
     }
+
 }

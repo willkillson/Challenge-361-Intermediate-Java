@@ -2,16 +2,15 @@ package com.company;
 
 public class Tile {
     public char character;
-    public Position pos;
+    public boolean isMarked = false;
 
-   public Tile(char character, Position pos){
+   public Tile(char character){
        this.character = character;
-       this.pos = pos;
    }
-    public Tile(char character, int xpos, int ypos){
+    public Tile(char character, boolean isMarked){
         this.character = character;
-        this.pos.xpos = xpos;
-        this.pos.ypos = ypos;
+        this.isMarked = isMarked;
+
     }
 
 }

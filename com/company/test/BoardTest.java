@@ -2,6 +2,7 @@ import com.company.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class BoardTest {
 
     @Test
@@ -31,4 +32,26 @@ public class BoardTest {
 
 
     }
+
+    @Test
+    public void TestBoardConstructor(){
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        assertEquals('s',board.tiles[0][0].character);
+        assertEquals('c',board.tiles[5][0].character);
+        assertEquals('w',board.tiles[0][5].character);
+        assertEquals('b',board.tiles[5][5].character);
+
+    }
+
+    @Test
+    public void TestBoardDefaultMarkerPos(){
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        assertEquals(0,board.markerPos.xpos);
+        assertEquals(0,board.markerPos.ypos);
+
+    }
+
+
 }
