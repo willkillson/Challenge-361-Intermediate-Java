@@ -36,6 +36,9 @@ public class Board {
     }
     public String decryptMessage(){
         String message = "";
+        int textIndex = 0;
+
+        textPos = findPosByChar(text.charAt(textIndex));
 
         return message;
     }
@@ -56,17 +59,14 @@ public class Board {
         }
         tiles[0][columnIndex] = temp;
     }
-    public Position FindTilePosition(Character chartofind){
+
+    public Position findPosByChar(Character chartofind){
         Position pos = new Position(0,0);
 
         return pos;
     }
-    public Character FindTargetCharacter(){
-        Character tar = ' ';
-
-
-        return tar;
-
+    public char findCharByPos(Position pos){
+        return tiles[pos.ypos][pos.xpos].character;
     }
     public HashMap<Character, Position> CreateDictionary(String letters){
         HashMap<Character, Position> dic = new HashMap<>();

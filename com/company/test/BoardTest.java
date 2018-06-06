@@ -116,14 +116,24 @@ public class BoardTest {
         Position pos3 = new Position(5,5);
 
 
-        assertEquals(pos1, board.FindTilePosition('t'));
-        assertEquals(pos2, board.FindTilePosition('#'));
-        assertEquals(pos3, board.FindTilePosition('b'));
+        assertEquals(pos1, board.findPosByChar('t'));
+        assertEquals(pos2, board.findPosByChar('#'));
+        assertEquals(pos3, board.findPosByChar('b'));
     }
 
     @Test
-    public void TestFindTargetCharacter(){
-        assertTrue(false);
+    public void TestFindCharacterByPosition(){
+        Board board = new Board("s2ferw_nx346ty5odiupq#lmz8ajhgcvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        Position pos1 = new Position(2,0);
+        Position pos2 = new Position(3,3);
+        Position pos3 = new Position(5,5);
+
+
+
+        assertEquals('t', board.findCharByPos(pos1));
+        assertEquals('#', board.findCharByPos(pos2));
+        assertEquals('b', board.findCharByPos(pos3));
 
     }
 
