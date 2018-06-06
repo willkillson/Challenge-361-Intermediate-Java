@@ -107,9 +107,34 @@ public class BoardTest {
     }
 
     @Test
-    public void TestUpdateMarkerPosition(){
+    public void TestFindTilePosition(){
+
+        Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
+
+        Position pos1 = new Position(2,0);
+        Position pos2 = new Position(3,3);
+        Position pos3 = new Position(5,5);
+
+
+        assertEquals(pos1, board.FindTilePosition('t'));
+        assertEquals(pos2, board.FindTilePosition('#'));
+        assertEquals(pos3, board.FindTilePosition('b'));
+    }
+
+    @Test
+    public void TestFindTargetCharacter(){
         assertTrue(false);
     }
+
+    @Test
+    public void TestUpdateMarkerPosition(){
+        Board board = new Board("s2ferw"+"_nx346"+"ty5odi"+"upq#lm"+"z8ajhg"+"cvk79b", "tk5j23tq94_gw9c#lhzs");
+
+
+        assertTrue(false);
+    }
+
+
     @Test
     public void TestDecryptMessage(){
         assertTrue(false);
@@ -119,5 +144,6 @@ public class BoardTest {
     public void TestEncryptMessage(){
         assertTrue(false);
     }
+
 
 }

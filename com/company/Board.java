@@ -10,6 +10,8 @@ public class Board {
     public Position textPos = new Position(0,0);
     public Position targetPos = new Position(0,0);
 
+    public Character targetCharacter;
+
 
 
     public Board(String alphabet, String text){
@@ -33,7 +35,18 @@ public class Board {
 
     }
 
+    public Position FindTilePosition(Character chartofind){
+        Position pos = new Position(0,0);
 
+        return pos;
+    }
+    public Character FindTargetCharacter(){
+        Character tar = ' ';
+
+
+        return tar;
+
+    }
     public HashMap<Character, Position> CreateDictionary(String letters){
         HashMap<Character, Position> dic = new HashMap<>();
         int letterIndex = 0;
